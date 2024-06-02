@@ -1,16 +1,18 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { Album } from "../../types/Album"
+import { View, Text} from "react-native"
 
 interface IProps {
     album: Album
 }
 export const AlbumTile: FC<IProps> = props => {
     return (
-        <Link to={`Album/${props.album.id}`}>
-            <div className={`bg-lime-400 flex justify-center items-center h-28 w-40 border-2 rounded-md border-black`}>
-                <p className='p-2'>{props.album.title}</p>
-            </div>
-        </Link>
+        <View style={{
+            width:200,
+            height:200,
+            backgroundColor: "red"
+        }}>
+            <Text>{props.album.title}</Text>
+        </View>
     )
 } 

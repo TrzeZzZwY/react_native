@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { View, Text, Image, StyleProp, ViewStyle } from "react-native"
 import { Photo } from "../../types/Photo"
 
 interface IProps {
@@ -8,11 +8,26 @@ interface IProps {
 
 export const PhotoTile: FC<IProps> = props => {
     return (
-        <>
-            <div className='p-7 m-4 flex flex-col justify-items-center items-center text-xl gap-5'>
-                <img src={props.photo.thumbnailUrl} alt="photo" />
-                <p className='text-sm w-[150px]'>{props.photo.title}</p>
-            </div>
-        </>
+            <View style=
+            {
+                {
+                    padding: 7,
+                    margin: 4,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 5,
+                    borderWidth: 5,
+                    width: "22%"
+                }
+            }>
+                <Image style={{width:150, height:150}} source={{uri: props.photo.thumbnailUrl}} alt="photo" />
+                <Text style={
+                    {
+                        fontSize: 20,
+                    }
+                }>{props.photo.title}</Text>
+            </View>
     )
 } 

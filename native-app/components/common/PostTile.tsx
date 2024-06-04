@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { Post } from "../../types/Post"
+import { Pressable, Text, View } from 'react-native';
+import { router } from 'expo-router';
 
 interface IProps {
     post: Post
@@ -8,11 +9,21 @@ interface IProps {
 
 export const PostTile: FC<IProps> = props => {
     return (
-        <Link to={`Post\\${props.post.id}`}>
-            <div className='flex flex-col gap-5 border border-2 border-black rounded w-1/2 p-4 bg-white'>
-                <p className='text-xl'>{props.post.title}</p>
-                <p className='text-lg'>{props.post.body}</p>
-            </div>
-        </Link>
+        <Pressable onPress={() => router.push({pathname:`/posts/${props.post.id}`})}>
+            <View
+            style={
+                {
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:5,
+                    borderWidth:3,
+                    borderRadius:20,
+                    padding:4
+                }
+            }>
+                <Text>{props.post.title}</Text>
+                <Text>{props.post.body}</Text>
+            </View>
+        </Pressable>
     )
 } 

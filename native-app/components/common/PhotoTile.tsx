@@ -18,8 +18,9 @@ export const PhotoTile: FC<IProps> = props => {
                     justifyContent: "center",
                     alignItems: "center",
                     gap: 5,
-                    borderWidth: 5,
-                    width: "22%"
+                    borderWidth: 2,
+                    borderRadius:5,
+                    width: "90%"
                 }
             }>
                 <Image style={{width:150, height:150}} source={{uri: props.photo.thumbnailUrl}} alt="photo" />

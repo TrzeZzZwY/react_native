@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { View, Text, Pressable, StyleProp, ViewStyle } from "react-native"
+import { View, Text, Pressable, StyleProp, ViewStyle, FlatList, ScrollView } from "react-native"
 import { FC, useState, useEffect } from "react";
 import { Photo } from "../../../types/Photo";
 import { GetPhotosForAlbumId } from "../../../requests/AlbumService";
@@ -11,29 +11,24 @@ const AlbumPage = () => {
 
     useEffect(()=>{
         GetPhotosForAlbumId(Number(albumId))
-        .then(photos =>{
-            photos = photos.map(e => {
-                let thumb = e.thumbnailUrl.replace("https","http");
-                return {id: e.id, albumId: e.albumId, title: e.title, url: e.url, thumbnailUrl: thumb}
-            })
-            setPhotos(photos)
-        })
+        .then(photos =>setPhotos(photos))
     },[])
 
     console.dir(photos);
     return (
-       <View style={
+       <ScrollView  contentContainerStyle={
         {
-            flex:1,
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "space-around",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems:"center",
+            padding:30
         }
        }>
          {photos?.map(photo =>
                 <PhotoTile photo={photo} key={photo.id}/>
                 )}
-       </View>
+       </ScrollView>
     )
 }
 

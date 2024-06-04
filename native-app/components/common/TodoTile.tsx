@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Todo } from "../../types/Todo"
 import { PatchCompleteTodo } from "../../requests/TodoService"
+import { Pressable, View, Text, StyleProp, ViewStyle } from 'react-native';
 
 interface IProps {
     todo: Todo,
@@ -24,13 +25,27 @@ export const TodoTile: FC<IProps> = props => {
             else setText("Complete");
         })
     }
+
+    const style: StyleProp<ViewStyle> = {
+        backgroundColor: getColor(props.todo),
+        display: "flex",
+        height:100,
+        width:"70%",
+        padding:6,
+        borderWidth: 2,
+        borderRadius:10
+    }
+
+    function getColor(todo: Todo){
+        return todo.complited ? "#a8e6cf":"#ffaaa5"
+    }
     
     return (
-        <>
-            <div className={`${props.todo.complited ? "bg-cyan-400" : "bg-red-400"} flex justify-center items-center h-28 w-48 border-2 rounded-md border-black`}>
-                <p className='p-2 text-xs'>{props.todo.title}</p>
-                <button className='p-2 bg-yellow-200 mr-3 border border-black rounded text-sm' onClick={handleTodoToggle}>{text}</button>
-            </div>
-        </>
+        <Pressable onPress={handleTodoToggle} style= {style}>
+            <Text>{props.todo.title}</Text>
+            <Text>{"click to " + text}</Text>
+        </Pressable>
     )
 } 
+
+

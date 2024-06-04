@@ -1,8 +1,9 @@
 import { Link, router } from "expo-router"
-import { View, Text, Pressable, StyleProp, ViewStyle } from "react-native"
+import { View, Text, Pressable, StyleProp, ViewStyle, ScrollView, TextStyle } from "react-native"
 import { FC, useState, useEffect } from 'react';
 import { GetAllUsers } from "../../../requests/UserService";
 import { User } from "../../../types/User";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomePage = () => {
     const [users, setUsers] = useState<User[] | null>();
@@ -36,8 +37,11 @@ const HomePage = () => {
         borderWidth: 2,
         borderRadius:20
     }
+    const textStyle: StyleProp<TextStyle> = {
+          fontFamily:""
+        }
     return(
-        <View style={
+        <ScrollView contentContainerStyle={
             {
                 display: "flex",
                 gap:10,
@@ -45,21 +49,20 @@ const HomePage = () => {
             }
         }>
             <View style={rowHeadStyle}>
-                <Text>Id</Text>
-                <Text>Username</Text>
-                <Text>Email</Text>
+                <Text style={textStyle}>Id</Text>
+                <Text style={textStyle}>Username</Text>
+                <Text style={textStyle}>Email</Text>
             </View>
             {
                 users?.map(e => 
                     <Pressable onPress={() => router.push(`/users/${e.id}`)} key={e.id} style={rowStyle}>
-                        <Text>{e.id}</Text>
-                        <Text>{e.username}</Text>
-                        <Text>{e.email}</Text>
+                        <Text style={textStyle}>{e.id}</Text>
+                        <Text style={textStyle}>{e.username}</Text>
+                        <Text style={textStyle}>{e.email}</Text>
                     </Pressable>
                 )
-            }
-        
-        </View>
+            } 
+        </ScrollView>
     ) 
 }
 

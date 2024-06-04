@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { View, Text, Pressable, StyleProp, ViewStyle } from "react-native"
+import { ScrollView, Text, Pressable, StyleProp, ViewStyle } from "react-native"
 import { FC, useState, useEffect } from "react";
 import { Album } from "../../../types/Album";
 import { GetAlbumsForUserId } from "../../../requests/AlbumService";
@@ -19,17 +19,20 @@ const AlbumsPage = () => {
     const rowStyle: StyleProp<ViewStyle> = {
         flex:1,
         flexDirection: "row",
-        paddingLeft: 10,
+        flexWrap: "wrap",
+        padding:10
     }
 
     return (
-        <View style={
+        <ScrollView contentContainerStyle={
             {
-                flex: 1,
-                flexDirection: "column"
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems:"center",
+                gap:20
             }
         }>
-            <Text>Albums Page</Text>
             {
                 albums?.map(e =>
                         <Pressable onPress={() => router.push(`/albums/${e.id}`)} key={e.id} style={rowStyle}>
@@ -37,7 +40,7 @@ const AlbumsPage = () => {
                         </Pressable>
                     )
             }
-        </View>
+        </ScrollView>
     )
 }
 

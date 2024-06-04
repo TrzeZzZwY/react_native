@@ -1,39 +1,46 @@
-import { Tabs } from "expo-router"
+import { Stack, Tabs } from "expo-router"
 
 const TabsLayout = () => {
     return (
-        <Tabs>
-            <Tabs.Screen name="index"  options={
+        <Stack>
+            <Stack.Screen name="index"  options={
                 {
                     headerTitle: "Home Page",
                     title: "Home"
                 }
                 }/>
-            <Tabs.Screen name="users/index"  options={
+            <Stack.Screen name="users/index" options={
                 {
                     headerTitle: "Users",
                     title: "Users"
                 }
                 }/>
-            <Tabs.Screen name="users/[userId]" options={
+            <Stack.Screen name="users/[userId]" options={
                 {
                     headerTitle: "User Page",
-                    href:null
                 }
                 }/>
-            <Tabs.Screen name="albums/[albumId]" options={
+            <Stack.Screen name="todos/[userId]" options={
                 {
-                    headerTitle: "album id Page",
-                    href:null
+                    headerTitle: "Todos Page",
                 }
                 }/>
-            <Tabs.Screen name="albums/index"  options={
+            <Stack.Screen name="albums/[albumId]" options={
                 {
-                    headerTitle: "albums Page",
-                    href:null
+                    headerTitle: "Album Page",
                 }
                 }/>
-        </Tabs>
+            <Stack.Screen name="albums/index"  options={
+                {
+                    headerTitle: "All Albums",
+                }
+                }/>
+            <Stack.Screen name="posts/[postId]"  options={
+                {
+                    headerTitle: "Post Page",
+                }
+                }/>
+        </Stack>
     );
 };
 

@@ -15,13 +15,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.trzezzzwy.nativeapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.trzezzzwy.nativeapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -29,7 +31,15 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "native-app"
+    "scheme": "native-app",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6cfed4dc-ffa9-4630-bca5-ae681cfcf573"
+      }
+    }
   },
   "web": {
     "bundler": "metro"
